@@ -2,6 +2,7 @@ import Accueil from "./Screens/Accueil";
 import Authentification from "./Screens/Authentification";
 import NewUser from "./Screens/NewUser";
 import Chat from "./Screens/Chat";
+import Profile from "./Screens/Profile";
 // navigationContainer is a component that manages the navigation tree and contains the navigation state.
 // It's usually added to the root component of the app.
 import { NavigationContainer } from "@react-navigation/native";
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="NewUser" component={NewUser} />
         <Stack.Screen name="Accueil" component={Accueil} />
         <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

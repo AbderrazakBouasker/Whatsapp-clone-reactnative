@@ -92,7 +92,7 @@ export default function NewUser(props) {
                   alert("Compte créé avec succès");
                   // go to Accueil
                   const currentId = auth.currentUser.uid;
-                  props.navigation.navigate("Accueil", {
+                  props.navigation.navigate("Profile", {
                     currentId,
                   });
                 })
