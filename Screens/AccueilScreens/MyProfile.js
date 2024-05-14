@@ -23,15 +23,16 @@ export default function MyProfile(props) {
     const ref_users = database.ref("users");
     const user = ref_users.child(currentId);
 
-    // Just one time
     user.once("value", (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setNom(data.Nom);
-        setPrenom(data.Prenom);
-        setTelephone(data.Telephone);
-        setPseudo(data.Pseudo);
-        setUrlImage(data.UrlImage);
+      if(snapshot.exists()){
+        const data = snapshot.val();
+        if (data) {
+          setNom(data.Nom);
+          setPrenom(data.Prenom);
+          setTelephone(data.Telephone);
+          setPseudo(data.Pseudo);
+          setUrlImage(data.UrlImage);
+        }
       }
     }).catch((error) => {
       alert(error);
@@ -149,10 +150,6 @@ export default function MyProfile(props) {
             Id: currentId,
           }).then(() => {
             alert("Profil enregistré");
-            setNom("");
-            setPrenom("");
-            setTelephone("");
-            setPseudo("");
           }).catch((error) => {
             alert(error);
           });
@@ -160,6 +157,22 @@ export default function MyProfile(props) {
         style={styles.saveButton}
       >
         <Text style={styles.saveButtonText}>Save</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={async () => {
+        const ref_users = database.ref("users");
+        const user = ref_users.child(currentId);
+          user.update({
+            connected: false,
+          }).then(() => {
+            alert("Logged out");
+            props.navigation.navigate("Authentification");
+          }).catch((error) => {
+            alert(error);
+          });
+        }}
+        style={styles.saveButton}
+      >
+        <Text style={styles.saveButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
     </ImageBackground>

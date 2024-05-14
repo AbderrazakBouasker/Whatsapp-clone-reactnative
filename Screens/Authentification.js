@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { Button } from "react-native";
-
+const database = firebase.database();
 import firebase from "../Config";
 
 const auth = firebase.auth();
@@ -68,8 +68,16 @@ export default function Authentification(props) {
                 .then((userCredential) => {
                   // Signed in
                   var user = userCredential.user;
-                  // ...
+                  const ref_users = database.ref("users");
                   const currentId = auth.currentUser.uid;
+                  const useri = ref_users.child(currentId);
+                  useri.update({
+                    connected: true,
+                  }).then(() => {
+                  }).catch((error) => {
+                    alert(error);
+                  });
+                  // ...
                   props.navigation.navigate("Accueil", {
                     currentId,
                   });

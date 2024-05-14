@@ -25,6 +25,7 @@ const Users = (props) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [itemPressed, setItemPressed] = useState({});
+  const [connected, setconnected] = useState(false);
 
   useEffect(() => {
     const fetchUsers = () => {
@@ -74,6 +75,16 @@ const Users = (props) => {
         style={styles.userImage}
       />
       <Text style={styles.userName}>{item.Pseudo}</Text>
+      <View
+        style={{
+          height: 10,
+          width: 10,
+          backgroundColor: item.connected? "green" : "red",
+          borderRadius: 15,
+          marginLeft: 10,
+        }}
+      >
+      </View>
       <TouchableOpacity onPress={() => handleChat(item)}>
         <FontAwesome5 name="comment" size={24} color="#555" />
       </TouchableOpacity>
