@@ -68,7 +68,7 @@ export default function MyProfile(props) {
     });
     
     const ref = storage.ref("images");
-    const childRef = ref.child("image");
+    const childRef = ref.child("image"+currentId);
 
     await childRef.put(blob);
     const url = await childRef.getDownloadURL();
