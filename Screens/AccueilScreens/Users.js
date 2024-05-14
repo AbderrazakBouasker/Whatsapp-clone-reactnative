@@ -25,7 +25,6 @@ const Users = (props) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [itemPressed, setItemPressed] = useState({});
-  const [connected, setconnected] = useState(false);
 
   useEffect(() => {
     const fetchUsers = () => {
